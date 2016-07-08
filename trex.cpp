@@ -806,42 +806,46 @@ TRexBool trex_getsubexp_t(typename TRexTraits< T_Char >::TRex* exp, int n, typen
 
 typedef TRexTraits< TRexChar >::TRex TRexASCII;
 
-
-TREX_API TRex *trex_compile(const TRexChar *pattern, const TRexChar **error)
+extern "C"
 {
-    return reinterpret_cast<TRex*>(trex_compile_t<TRexChar>(pattern, error));
-}
 
-TREX_API void trex_free(TRex *exp)
-{
-    return trex_free_t<TRexChar>(reinterpret_cast<TRexASCII*>(exp));
-}
 
-TREX_API TRexBool trex_match(TRex* exp, const TRexChar* text)
-{
-    return trex_match_t<TRexChar>(reinterpret_cast<TRexASCII*>(exp), text);
-}
+    TREX_API TRex *trex_compile(const TRexChar *pattern, const TRexChar **error)
+    {
+        return reinterpret_cast<TRex*>(trex_compile_t<TRexChar>(pattern, error));
+    }
 
-TREX_API TRexBool trex_search(TRex* exp, const TRexChar* text, const TRexChar** out_begin, const TRexChar** out_end)
-{
-    return trex_search_t<TRexChar>(reinterpret_cast<TRexASCII*>(exp), text, out_begin, out_end);
-}
+    TREX_API void trex_free(TRex *exp)
+    {
+        return trex_free_t<TRexChar>(reinterpret_cast<TRexASCII*>(exp));
+    }
 
-TREX_API TRexBool trex_searchrange(TRex* exp, const TRexChar* text_begin, const TRexChar* text_end, const TRexChar** out_begin, const TRexChar** out_end)
-{
-    return trex_searchrange_t<TRexChar>(reinterpret_cast<TRexASCII*>(exp), text_begin, text_end, out_begin, out_end);
-}
+    TREX_API TRexBool trex_match(TRex* exp, const TRexChar* text)
+    {
+        return trex_match_t<TRexChar>(reinterpret_cast<TRexASCII*>(exp), text);
+    }
 
-TREX_API int trex_getsubexpcount(TRex* exp)
-{
-    return trex_getsubexpcount_t<TRexChar>(reinterpret_cast<TRexASCII*>(exp));
-}
+    TREX_API TRexBool trex_search(TRex* exp, const TRexChar* text, const TRexChar** out_begin, const TRexChar** out_end)
+    {
+        return trex_search_t<TRexChar>(reinterpret_cast<TRexASCII*>(exp), text, out_begin, out_end);
+    }
 
-TREX_API TRexBool trex_getsubexp(TRex* exp, int n, TRexMatch *subexp)
-{
-    return trex_getsubexp_t<TRexChar>(reinterpret_cast<TRexASCII*>(exp), n, subexp);
-}
+    TREX_API TRexBool trex_searchrange(TRex* exp, const TRexChar* text_begin, const TRexChar* text_end, const TRexChar** out_begin, const TRexChar** out_end)
+    {
+        return trex_searchrange_t<TRexChar>(reinterpret_cast<TRexASCII*>(exp), text_begin, text_end, out_begin, out_end);
+    }
 
+    TREX_API int trex_getsubexpcount(TRex* exp)
+    {
+        return trex_getsubexpcount_t<TRexChar>(reinterpret_cast<TRexASCII*>(exp));
+    }
+
+    TREX_API TRexBool trex_getsubexp(TRex* exp, int n, TRexMatch *subexp)
+    {
+        return trex_getsubexp_t<TRexChar>(reinterpret_cast<TRexASCII*>(exp), n, subexp);
+    }
+
+}
 
 //
 //
@@ -849,37 +853,42 @@ TREX_API TRexBool trex_getsubexp(TRex* exp, int n, TRexMatch *subexp)
 //
 typedef TRexTraits< TRexWChar >::TRex TRexUnicode;
 
-TREX_API TRex *trex_compilew(const TRexWChar *pattern, const TRexChar **error)
+extern "C"
 {
-    return reinterpret_cast<TRex*>(trex_compile_t<TRexWChar>(pattern, error));
-}
 
-TREX_API void trex_freew(TRex *exp)
-{
-    return trex_free_t<TRexWChar>(reinterpret_cast<TRexUnicode*>(exp));
-}
+    TREX_API TRex *trex_compilew(const TRexWChar *pattern, const TRexChar **error)
+    {
+        return reinterpret_cast<TRex*>(trex_compile_t<TRexWChar>(pattern, error));
+    }
 
-TREX_API TRexBool trex_matchw(TRex* exp, const TRexWChar* text)
-{
-    return trex_match_t<TRexWChar>(reinterpret_cast<TRexUnicode*>(exp), text);
-}
+    TREX_API void trex_freew(TRex *exp)
+    {
+        return trex_free_t<TRexWChar>(reinterpret_cast<TRexUnicode*>(exp));
+    }
 
-TREX_API TRexBool trex_searchw(TRex* exp, const TRexWChar* text, const TRexWChar** out_begin, const TRexWChar** out_end)
-{
-    return trex_search_t<TRexWChar>(reinterpret_cast<TRexUnicode*>(exp), text, out_begin, out_end);
-}
+    TREX_API TRexBool trex_matchw(TRex* exp, const TRexWChar* text)
+    {
+        return trex_match_t<TRexWChar>(reinterpret_cast<TRexUnicode*>(exp), text);
+    }
 
-TREX_API TRexBool trex_searchrangew(TRex* exp, const TRexWChar* text_begin, const TRexWChar* text_end, const TRexWChar** out_begin, const TRexWChar** out_end)
-{
-    return trex_searchrange_t<TRexWChar>(reinterpret_cast<TRexUnicode*>(exp), text_begin, text_end, out_begin, out_end);
-}
+    TREX_API TRexBool trex_searchw(TRex* exp, const TRexWChar* text, const TRexWChar** out_begin, const TRexWChar** out_end)
+    {
+        return trex_search_t<TRexWChar>(reinterpret_cast<TRexUnicode*>(exp), text, out_begin, out_end);
+    }
 
-TREX_API int trex_getsubexpcountw(TRex* exp)
-{
-    return trex_getsubexpcount_t<TRexWChar>(reinterpret_cast<TRexUnicode*>(exp));
-}
+    TREX_API TRexBool trex_searchrangew(TRex* exp, const TRexWChar* text_begin, const TRexWChar* text_end, const TRexWChar** out_begin, const TRexWChar** out_end)
+    {
+        return trex_searchrange_t<TRexWChar>(reinterpret_cast<TRexUnicode*>(exp), text_begin, text_end, out_begin, out_end);
+    }
 
-TREX_API TRexBool trex_getsubexpw(TRex* exp, int n, TRexWMatch *subexp)
-{
-    return trex_getsubexp_t<TRexWChar>(reinterpret_cast<TRexUnicode*>(exp), n, subexp);
+    TREX_API int trex_getsubexpcountw(TRex* exp)
+    {
+        return trex_getsubexpcount_t<TRexWChar>(reinterpret_cast<TRexUnicode*>(exp));
+    }
+
+    TREX_API TRexBool trex_getsubexpw(TRex* exp, int n, TRexWMatch *subexp)
+    {
+        return trex_getsubexp_t<TRexWChar>(reinterpret_cast<TRexUnicode*>(exp), n, subexp);
+    }
+
 }

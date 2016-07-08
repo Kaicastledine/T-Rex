@@ -1,3 +1,35 @@
+# Nettitude fork of T-REX 1.3
+
+### NOTE: This Fork Of T-Rex uses C++ 
+###       and allows both Unicode and ANSI
+###       to be compiled into the same 
+###       library
+###
+###       The interface is still C compatible
+###
+
+```C
+    /* ASCII interface */
+    TREX_API TRex *trex_compile(const TRexChar *pattern, const TRexChar **error);
+    TREX_API void trex_free(TRex *exp);
+    TREX_API TRexBool trex_match(TRex* exp, const TRexChar* text);
+    TREX_API TRexBool trex_search(TRex* exp, const TRexChar* text, const TRexChar** out_begin, const TRexChar** out_end);
+    TREX_API TRexBool trex_searchrange(TRex* exp, const TRexChar* text_begin, const TRexChar* text_end, const TRexChar** out_begin, const TRexChar** out_end);
+    TREX_API int trex_getsubexpcount(TRex* exp);
+    TREX_API TRexBool trex_getsubexp(TRex* exp, int n, TRexMatch *subexp);
+
+    /* Unicode interface */
+    TREX_API TRex *trex_compilew(const TRexWChar *pattern, const TRexChar **error);
+    TREX_API void trex_freew(TRex *exp);
+    TREX_API TRexBool trex_matchw(TRex* exp, const TRexWChar* text);
+    TREX_API TRexBool trex_searchw(TRex* exp, const TRexWChar* text, const TRexWChar** out_begin, const TRexWChar** out_end);
+    TREX_API TRexBool trex_searchrangew(TRex* exp, const TRexWChar* text_begin, const TRexWChar* text_end, const TRexWChar** out_begin, const TRexWChar** out_end);
+    TREX_API int trex_getsubexpcountw(TRex* exp);
+    TREX_API TRexBool trex_getsubexpw(TRex* exp, int n, TRexWMatch *subexp);
+```
+
+
+
 T-REX 1.3 http://tiny-rex.sourceforge.net
 ----------------------------------------------------------------------
 	T-Rex a tiny regular expression library
