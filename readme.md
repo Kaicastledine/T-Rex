@@ -1,12 +1,7 @@
 # Nettitude fork of T-REX 1.3
 
-### NOTE: This Fork Of T-Rex uses C++ 
-###       and allows both Unicode and ANSI
-###       to be compiled into the same 
-###       library
-###
-###       The interface is still C compatible
-###
+NOTE: This Fork Of T-Rex uses C++ and allows both Unicode and ANSI flavours of T-Rex to be compiled into the same library the interface is still C compatible
+
 
 ```C
     /* ASCII interface */
@@ -29,7 +24,7 @@
 ```
 
 
-
+<pre>
 T-REX 1.3 http://tiny-rex.sourceforge.net
 ----------------------------------------------------------------------
 	T-Rex a tiny regular expression library
@@ -201,3 +196,4 @@ submatch
 	
 this function works also after a match operation has been performend.
 	
+</pre>
