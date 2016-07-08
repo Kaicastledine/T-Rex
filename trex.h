@@ -27,18 +27,9 @@
 
 ****************************************************************/
 
-#ifdef _UNICODE
-#define TRexChar unsigned short
-#define MAX_CHAR 0xFFFF
-#define _TREXC(c) L##c 
-#define trex_strlen wcslen
-#define trex_printf wprintf
-#else
-#define TRexChar char
-#define MAX_CHAR 0xFF
-#define _TREXC(c) (c) 
-#define trex_strlen strlen
-#define trex_printf printf
+#if defined(__cplusplus)
+extern "C"
+{
 #endif
 
 #ifndef TREX_API
@@ -48,20 +39,44 @@
 #define TRex_True 1
 #define TRex_False 0
 
-typedef unsigned int TRexBool;
-typedef struct TRex TRex;
+    typedef char TRexChar;
+    typedef wchar_t TRexWChar ;
 
-typedef struct {
-	const TRexChar *begin;
-	int len;
-} TRexMatch;
 
-TREX_API TRex *trex_compile(const TRexChar *pattern,const TRexChar **error);
-TREX_API void trex_free(TRex *exp);
-TREX_API TRexBool trex_match(TRex* exp,const TRexChar* text);
-TREX_API TRexBool trex_search(TRex* exp,const TRexChar* text, const TRexChar** out_begin, const TRexChar** out_end);
-TREX_API TRexBool trex_searchrange(TRex* exp,const TRexChar* text_begin,const TRexChar* text_end,const TRexChar** out_begin, const TRexChar** out_end);
-TREX_API int trex_getsubexpcount(TRex* exp);
-TREX_API TRexBool trex_getsubexp(TRex* exp, int n, TRexMatch *subexp);
+    typedef unsigned int TRexBool;
+    typedef struct TRex TRex;
+
+    typedef struct {
+        const TRexChar *begin;
+        ptrdiff_t len;
+    } TRexMatch;
+
+    typedef struct {
+        const TRexWChar *begin;
+        ptrdiff_t len;
+    } TRexWMatch;
+
+    /* ASCII interface */
+    TREX_API TRex *trex_compile(const TRexChar *pattern, const TRexChar **error);
+    TREX_API void trex_free(TRex *exp);
+    TREX_API TRexBool trex_match(TRex* exp, const TRexChar* text);
+    TREX_API TRexBool trex_search(TRex* exp, const TRexChar* text, const TRexChar** out_begin, const TRexChar** out_end);
+    TREX_API TRexBool trex_searchrange(TRex* exp, const TRexChar* text_begin, const TRexChar* text_end, const TRexChar** out_begin, const TRexChar** out_end);
+    TREX_API int trex_getsubexpcount(TRex* exp);
+    TREX_API TRexBool trex_getsubexp(TRex* exp, int n, TRexMatch *subexp);
+
+    /* Unicode interface */
+    TREX_API TRex *trex_compilew(const TRexWChar *pattern, const TRexChar **error);
+    TREX_API void trex_freew(TRex *exp);
+    TREX_API TRexBool trex_matchw(TRex* exp, const TRexWChar* text);
+    TREX_API TRexBool trex_searchw(TRex* exp, const TRexWChar* text, const TRexWChar** out_begin, const TRexWChar** out_end);
+    TREX_API TRexBool trex_searchrangew(TRex* exp, const TRexWChar* text_begin, const TRexWChar* text_end, const TRexWChar** out_begin, const TRexWChar** out_end);
+    TREX_API int trex_getsubexpcountw(TRex* exp);
+    TREX_API TRexBool trex_getsubexpw(TRex* exp, int n, TRexWMatch *subexp);
+
+#if defined(__cplusplus)
+}
+#endif
+
 
 #endif
